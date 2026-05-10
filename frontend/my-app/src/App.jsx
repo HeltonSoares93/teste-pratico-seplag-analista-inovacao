@@ -14,27 +14,6 @@ import EducacaoInfantilEja from "./componentes/EducacaoInfantilEja";
 
 export default function App() {
 
-  // const [dados, setDados] = useState([]);
-
-  // const buscarDados = () => {
-  //   fetch("http://localhost:8080/medicamentos")
-  //     .then(resposta => {
-  //       if (!resposta.ok) {
-  //         throw new Error("Não foi possível buscar os dados no momento, tente novamente.")
-  //       };
-  //       return resposta.json();
-  //     })
-  //     .then(dados => {
-  //       setDados(dados);
-  //     }).catch(erro => {
-  //       console.error("Erro na comunicação com a API: ", erro);
-  //     })
-  // }
-
-  // useEffect(() => {
-  //   buscarDados();
-  // }, [])
-
   return (
 
     <Container>

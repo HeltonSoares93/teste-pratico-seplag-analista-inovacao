@@ -68,10 +68,6 @@ export default function Medicamentos() {
 
   const handleLimpar = () => {
     limparFiltros();
-    // Limpar os filtros não tem efeito síncrono no state ainda,
-    // então chamamos passando vazio nas variáveis de URL.
-    // O ideal seria resetar no buildUrl ou aguardar setState,
-    // mas vamos forçar a busca na raiz.
     setLoading(true);
     fetch("http://localhost:8080/medicamentos?page=0&size=20")
       .then(res => res.json())
@@ -146,7 +142,7 @@ export default function Medicamentos() {
               </Form>
             </Card.Body>
             <Card.Body>
-              <div className="d-flex flex-wrap justify-content-center justify-content-md-end mb-3 gap-2">
+              {/* <div className="d-flex flex-wrap justify-content-center justify-content-md-end mb-3 gap-2">
                 <Button variant="danger" className="d-flex align-items-center gap-2">
                   Exportar PDF
                 </Button>
@@ -154,7 +150,7 @@ export default function Medicamentos() {
                 <Button variant="success" className="d-flex align-items-center gap-2">
                   Exportar Planilha
                 </Button>
-              </div>
+              </div> */}
               <Table striped bordered hover responsive className="table-recife">
                 <thead>
                   <tr>

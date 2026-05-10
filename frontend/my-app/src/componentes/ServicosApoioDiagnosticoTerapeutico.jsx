@@ -132,7 +132,7 @@ export default function ServicosApoioDiagnosticoTerapeutico() {
               </Form>
             </Card.Body>
             <Card.Body>
-              <div className="d-flex flex-wrap justify-content-center justify-content-md-end mb-3 gap-2">
+              {/* <div className="d-flex flex-wrap justify-content-center justify-content-md-end mb-3 gap-2">
                 <Button variant="danger" className="d-flex align-items-center gap-2">
                   Exportar PDF
                 </Button>
@@ -140,7 +140,7 @@ export default function ServicosApoioDiagnosticoTerapeutico() {
                 <Button variant="success" className="d-flex align-items-center gap-2">
                   Exportar Planilha
                 </Button>
-              </div>
+              </div> */}
               <Table striped bordered hover className="table-recife" responsive>
                 <thead>
                   <tr>

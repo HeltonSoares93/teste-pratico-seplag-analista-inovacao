@@ -1,17 +1,16 @@
 package dev.heltonsoares.backend_teste_pratico_vaga_analista_de_inovacao.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
 import dev.heltonsoares.backend_teste_pratico_vaga_analista_de_inovacao.client.RecifeMedicamentoApiClient;
 import dev.heltonsoares.backend_teste_pratico_vaga_analista_de_inovacao.dtos.CkanMedicamentoResponse;
 import dev.heltonsoares.backend_teste_pratico_vaga_analista_de_inovacao.dtos.MedicamentoResponse;
 import dev.heltonsoares.backend_teste_pratico_vaga_analista_de_inovacao.dtos.PaginaResponse;
+import jakarta.annotation.PostConstruct;
 
 @Service
 public class MedicamentoService {
@@ -33,7 +32,8 @@ public class MedicamentoService {
     while (temMais) {
       try {
         CkanMedicamentoResponse response = apiClient.buscarDadosBrutos(limit, offset);
-        if (response != null && response.success() && response.result() != null && response.result().records() != null) {
+        if (response != null && response.success() && response.result() != null
+            && response.result().records() != null) {
           List<MedicamentoResponse> lote = response.result().records().stream()
               .map(ckan -> new MedicamentoResponse(
                   ckan.distrito(),
@@ -79,16 +79,10 @@ public class MedicamentoService {
             return false;
           return ckan.produto().toLowerCase().contains(medicamento.toLowerCase());
         })
-        // O CkanMedicamento mapeava para "codigoProduto", mas o MedicamentoResponse atual não tem o campo codigo.
-        // Se a busca por código precisa ser mantida, ideal seria adicionar código no MedicamentoResponse,
-        // mas mantendo a interface original, filtramos por produto contendo o codigo como fallback,
-        // ou ignoramos se não estiver mapeado. No original ele filtrava ckan.codigoProduto().
-        // Como agora mapeamos direto para MedicamentoResponse, o código não está disponível.
-        // Adaptando a lógica para não quebrar a compilação:
         .filter(ckan -> {
           if (codigo == null || codigo.isBlank())
             return true;
-          // Como MedicamentoResponse não tem código, ignoramos ou buscamos na string do produto
+          
           if (ckan.produto() == null)
             return false;
           return ckan.produto().contains(codigo);
@@ -110,7 +104,7 @@ public class MedicamentoService {
 
     List<MedicamentoResponse> paginados = filtrados;
     if (size > 0 && page >= 0) {
-        paginados = filtrados.stream()
+      paginados = filtrados.stream()
           .skip((long) page * size)
           .limit(size)
           .collect(Collectors.toList());
