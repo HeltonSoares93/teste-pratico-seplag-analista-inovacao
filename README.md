@@ -63,22 +63,64 @@ Para rodar este projeto, você precisará ter instalado em sua máquina:
 Siga os passos abaixo para clonar e rodar a aplicação em seu ambiente local.
 
 ### 1. Clonar o Repositório
+
 Abra o seu terminal e execute:
+
 ```bash
 git clone <url-do-seu-repositorio>
 cd <pasta-do-projeto>
 ```
 
+> **⚠️ Usuários Windows — Limite de caminho (MAX_PATH)**
+>
+> Por padrão, o Windows possui um limite histórico de 260 caracteres para o caminho completo de um arquivo ou diretório (restrição conhecida como **MAX_PATH**). Como a arquitetura de pacotes do Java exige uma estrutura de pastas profundamente aninhada (ex: `src/main/java/dev/...`) e o nome do projeto e das classes possuem nomenclaturas extensas, o endereço completo dos arquivos pode ultrapassar esse limite no momento em que o Git tentar gravá-los no disco.
+>
+> **1. Habilite o suporte a caminhos longos no Git**
+>
+> Execute o comando abaixo no seu terminal **antes** de clonar:
+> ```bash
+> git config --global core.longpaths true
+> ```
+>
+> **2. Restaure os arquivos (se o repositório já foi baixado)**
+>
+> Caso o repositório já tenha sido clonado e alguns arquivos estejam faltando, navegue até a pasta criada e instrua o Git a extraí-los novamente:
+> ```bash
+> cd teste-pratico-seplag-analista-inovacao
+> git restore --source=HEAD :/
+> ```
+> Após a execução, a estrutura completa do backend estará disponível na sua máquina.
+
 ### 2. Executar o Backend
+
 Abra um terminal na pasta do Backend:
+
 ```bash
 cd backend/backend-teste-pratico-vaga-analista-de-inovacao
 ```
-Realize a compilação e execute o projeto (usando o Maven Wrapper local ou a sua instalação do Maven):
+
+> **ℹ️ Maven Wrapper incluso — nenhuma instalação global necessária**
+>
+> O projeto já possui o **Maven Wrapper** embutido (arquivos `mvnw` e `mvnw.cmd`). Isso significa que você não precisa de uma instalação global do Maven nem de configuração de variáveis de ambiente no Windows. O wrapper baixa e utiliza automaticamente a versão exata do Maven que o projeto requer.
+>
+> No **PowerShell**, adicione `.\` antes dos comandos para que o shell localize o executável na pasta atual em vez de buscá-lo no PATH do sistema:
+> ```powershell
+> .\mvnw clean install
+> .\mvnw spring-boot:run
+> ```
+
+Realize a compilação e execute o projeto:
+
 ```bash
+# Linux/macOS ou Git Bash
 mvn clean install
 mvn spring-boot:run
+
+# Windows PowerShell (usando o Maven Wrapper local)
+.\mvnw clean install
+.\mvnw spring-boot:run
 ```
+
 Aguarde alguns segundos até que o Spring Boot exiba a mensagem informando que finalizou a extração e o cache de todas as linhas de dados do CKAN. O Backend ficará disponível em `http://localhost:8080`.
 
 ### 3. Executar o Frontend
