@@ -117,13 +117,13 @@ export default function Medicamentos() {
                       placeholder="Ex: Dipirona, Paracetamol..."
                       onChange={(e) => setMedicamento(e.target.value)} />
                   </Col>
-                  <Col xs={12} md={6} lg={3}>
+                  {/* <Col xs={12} md={6} lg={3}>
                     <Form.Label>Código do Medicamento</Form.Label>
                     <Form.Control
                       value={codigo}
                       placeholder="Ex: 10943"
                       onChange={(e) => setCodigo(e.target.value)} />
-                  </Col>
+                  </Col> */}
                   <Col xs={12} md={6} lg={3}>
                     <Form.Label>Qtd. Superior - unit.</Form.Label>
                     <Form.Control
