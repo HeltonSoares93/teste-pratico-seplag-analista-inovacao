@@ -1,0 +1,21 @@
+package dev.heltonsoares.backend_app.dtos;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public record CkanUDP(
+    Integer cnes,
+    @JsonProperty("nome_oficial") String nomeOficial,
+    String servico,
+    String especialidade,
+    @JsonProperty("como_usar") String comoUsar,
+    String horario,
+    String distrito,
+    Integer rpa,
+    String bairro,
+    @JsonProperty("endereÃ§o") String endereco,
+    String fone,
+    @JsonProperty("micro_regiao") Integer microRegiao,
+    String latitude,
+    String longitude) {
+
+}

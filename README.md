@@ -96,7 +96,7 @@ cd <pasta-do-projeto>
 Abra um terminal na pasta do Backend:
 
 ```bash
-cd backend/backend-teste-pratico-vaga-analista-de-inovacao
+cd backend/backend-app
 ```
 
 > **ℹ️ Maven Wrapper incluso — nenhuma instalação global necessária**
