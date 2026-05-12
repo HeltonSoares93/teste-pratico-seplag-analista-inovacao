@@ -71,9 +71,11 @@ git clone <url-do-seu-repositorio>
 cd <pasta-do-projeto>
 ```
 
-> **⚠️ Usuários Windows — Limite de caminho (MAX_PATH)**
+> **⚠️ Usuários Windows — Limite de caminho (MAX_PATH) [Recomendação Legada]**
 >
-> Por padrão, o Windows possui um limite histórico de 260 caracteres para o caminho completo de um arquivo ou diretório (restrição conhecida como **MAX_PATH**). Como a arquitetura de pacotes do Java exige uma estrutura de pastas profundamente aninhada (ex: `src/main/java/dev/...`) e o nome do projeto e das classes possuem nomenclaturas extensas, o endereço completo dos arquivos pode ultrapassar esse limite no momento em que o Git tentar gravá-los no disco.
+> *Nota: Esta é uma recomendação legada. O projeto foi refatorado e teve sua nomenclatura encurtada (ex: `backend-app`) para mitigar esse problema nativamente. No entanto, se você estiver baixando este repositório para dentro de diretórios já muito profundos, a restrição pode voltar a ocorrer.*
+>
+> Por padrão, o Windows possui um limite histórico de 260 caracteres para o caminho completo de um arquivo. Caso ocorram falhas durante a extração do Git, siga as etapas abaixo:
 >
 > **1. Habilite o suporte a caminhos longos no Git**
 >
@@ -124,6 +126,11 @@ mvn spring-boot:run
 Aguarde alguns segundos até que o Spring Boot exiba a mensagem informando que finalizou a extração e o cache de todas as linhas de dados do CKAN. O Backend ficará disponível em `http://localhost:8080`.
 
 ### 3. Executar o Frontend
+
+> **⚠️ Requisito**
+>
+> Certifique-se de ter o **Node.js** instalado em sua máquina (versão 18 ou superior) antes de prosseguir.
+
 Abra um novo terminal na raiz do projeto e navegue até a pasta do Frontend:
 ```bash
 cd frontend/my-app
