@@ -3,6 +3,7 @@ package dev.heltonsoares.backend_app.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Comparator;
 
 import org.springframework.stereotype.Service;
 
@@ -67,6 +68,7 @@ public class EducacaoInfantilEjaService {
       String sexo,
       String raca,
       Integer quantidade,
+      String ordem,
       int page, int size
   ) {
     List<EducacaoInfantilEjaResponse> filtrados = cache.stream()
@@ -101,6 +103,12 @@ public class EducacaoInfantilEjaService {
           return ckan.quantidade().equals(quantidade);
         })
         .collect(Collectors.toList());
+
+    if ("asc".equalsIgnoreCase(ordem)) {
+      filtrados.sort(Comparator.comparing(EducacaoInfantilEjaResponse::quantidade, Comparator.nullsLast(Comparator.naturalOrder())));
+    } else if ("desc".equalsIgnoreCase(ordem)) {
+      filtrados.sort(Comparator.comparing(EducacaoInfantilEjaResponse::quantidade, Comparator.nullsLast(Comparator.naturalOrder())).reversed());
+    }
 
     long total = filtrados.size();
     int totalPaginas = size > 0 ? (int) Math.ceil((double) total / size) : 1;

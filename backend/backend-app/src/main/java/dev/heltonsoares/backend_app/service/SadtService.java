@@ -66,7 +66,7 @@ public class SadtService {
     System.out.println("Cache de SADTs finalizado. Total de registros: " + cache.size());
   }
 
-  public PaginaResponse<SadtResponse> listarSadts(String bairro, String endereco, String nomeOficial, int page, int size) {
+  public PaginaResponse<SadtResponse> listarSadts(String bairro, String endereco, String nomeOficial, String especialidade, String horario, int page, int size) {
     List<SadtResponse> filtrados = cache.stream()
         .filter(ckan -> {
           if (bairro == null || bairro.isBlank()) return true;
@@ -83,6 +83,16 @@ public class SadtService {
           if (ckan.nomeOficial() == null) return false;
           return ckan.nomeOficial().toLowerCase().contains(nomeOficial.toLowerCase());
         })
+        .filter(ckan -> {
+          if (especialidade == null || especialidade.isBlank()) return true;
+          if (ckan.especialidade() == null) return false;
+          return ckan.especialidade().toLowerCase().contains(especialidade.toLowerCase());
+        })
+        .filter(ckan -> {
+          if (horario == null || horario.isBlank()) return true;
+          if (ckan.horario() == null) return false;
+          return ckan.horario().toLowerCase().contains(horario.toLowerCase());
+        })
         .collect(Collectors.toList());
 
     long total = filtrados.size();
@@ -97,5 +107,14 @@ public class SadtService {
     }
 
     return new PaginaResponse<>(paginados, total, page, size, totalPaginas);
+  }
+
+  public List<String> listarHorariosDisponiveis() {
+    return cache.stream()
+        .map(SadtResponse::horario)
+        .filter(h -> h != null && !h.isBlank())
+        .distinct()
+        .sorted()
+        .collect(Collectors.toList());
   }
 }

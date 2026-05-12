@@ -12,6 +12,7 @@ export default function UnidadesSaudeDaFamilia() {
   const [endereco, setEndereco] = useState("")
   const [especialidade, setEspecialidade] = useState("")
   const [horario, setHorario] = useState("")
+  const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
@@ -39,6 +40,10 @@ export default function UnidadesSaudeDaFamilia() {
 
   useEffect(() => {
     buscarDados(0);
+    fetch("http://localhost:8080/usf/horarios")
+      .then(res => res.json())
+      .then(json => setHorariosDisponiveis(json || []))
+      .catch(erro => console.error("Erro ao buscar horários: ", erro));
   }, []);
 
   const buildUrl = (pageNumber) => {
@@ -133,10 +138,15 @@ export default function UnidadesSaudeDaFamilia() {
                   </Col>
                   <Col xs={12} md={6} lg={3}>
                     <Form.Label>Horário</Form.Label>
-                    <Form.Control placeholder="Ex: segunda OU 08"
+                    <Form.Select 
                       value={horario}
                       onChange={(e) => setHorario(e.target.value)}
-                    />
+                    >
+                      <option value="">Todos os horários</option>
+                      {horariosDisponiveis.map((h, i) => (
+                        <option key={i} value={h}>{h}</option>
+                      ))}
+                    </Form.Select>
                   </Col>
                 </Row>
               </Form>

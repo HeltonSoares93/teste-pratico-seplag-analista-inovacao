@@ -28,11 +28,12 @@ public class EducacaoInfantilEjaController {
       @RequestParam(required = false) String sexo,
       @RequestParam(required = false) String raca,
       @RequestParam(required = false) Integer quantidade,
+      @RequestParam(required = false) String ordem,
       @RequestParam(defaultValue = "0") int page,
       @RequestParam(defaultValue = "20") int size
   ) {
     PaginaResponse<EducacaoInfantilEjaResponse> dados = educacaoInfantilEjaService.listarDados(
-        unidadeEnsino, bairroEscola, modalidadeEnsino, sexo, raca, quantidade, page, size);
+        unidadeEnsino, bairroEscola, modalidadeEnsino, sexo, raca, quantidade, ordem, page, size);
 
     return ResponseEntity.ok(dados);
   }

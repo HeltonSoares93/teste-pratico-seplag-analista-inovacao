@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.heltonsoares.backend_app.dtos.PaginaResponse;
 import dev.heltonsoares.backend_app.dtos.SadtResponse;
 import dev.heltonsoares.backend_app.service.SadtService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/sadt")
@@ -25,12 +26,19 @@ public class SadtController {
       @RequestParam(required = false) String nomeOficial,
       @RequestParam(required = false) String bairro,
       @RequestParam(required = false) String endereco,
+      @RequestParam(required = false) String especialidade,
+      @RequestParam(required = false) String horario,
       @RequestParam(defaultValue = "0") int page,
       @RequestParam(defaultValue = "20") int size) {
 
-    PaginaResponse<SadtResponse> dados = sadtService.listarSadts(bairro, endereco, nomeOficial, page, size);
+    PaginaResponse<SadtResponse> dados = sadtService.listarSadts(bairro, endereco, nomeOficial, especialidade, horario, page, size);
 
     return ResponseEntity.ok(dados);
+  }
+
+  @GetMapping("/horarios")
+  public ResponseEntity<List<String>> listarHorarios() {
+    return ResponseEntity.ok(sadtService.listarHorariosDisponiveis());
   }
 
 }

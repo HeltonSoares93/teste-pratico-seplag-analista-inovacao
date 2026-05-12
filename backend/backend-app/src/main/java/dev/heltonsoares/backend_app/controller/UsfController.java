@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.heltonsoares.backend_app.dtos.PaginaResponse;
 import dev.heltonsoares.backend_app.dtos.UsfResponse;
 import dev.heltonsoares.backend_app.service.UsfService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/usf")
@@ -33,6 +34,11 @@ public class UsfController {
     PaginaResponse<UsfResponse> dados = usfService.listarUSFs(nomeOficial, endereco, especialidade, bairro, horario, page, size);
 
     return ResponseEntity.ok(dados);
+  }
+
+  @GetMapping("/horarios")
+  public ResponseEntity<List<String>> listarHorarios() {
+      return ResponseEntity.ok(usfService.listarHorariosDisponiveis());
   }
 
 }

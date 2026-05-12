@@ -14,6 +14,7 @@ export default function EducacaoInfantilEja() {
   const [sexo, setSexo] = useState("")
   const [raca, setRaca] = useState("")
   const [quantidade, setQuantidade] = useState("")
+  const [ordem, setOrdem] = useState("")
 
   const [loading, setLoading] = useState(false);
 
@@ -51,6 +52,7 @@ export default function EducacaoInfantilEja() {
     if (sexo.trim()) params.append("sexo", sexo.trim());
     if (raca.trim()) params.append("raca", raca.trim());
     if (quantidade.trim()) params.append("quantidade", quantidade.trim());
+    if (ordem.trim()) params.append("ordem", ordem.trim());
     params.append("page", pageNumber);
     params.append("size", 20);
     const query = params.toString();
@@ -64,6 +66,7 @@ export default function EducacaoInfantilEja() {
     setSexo("");
     setRaca("");
     setQuantidade("");
+    setOrdem("");
   };
 
   const handleFiltrar = () => {
@@ -133,8 +136,17 @@ export default function EducacaoInfantilEja() {
                       <option value="M">Masculino</option>
                     </Form.Select>
                   </Col>
-
-
+                  <Col xs={12} md={6} lg={3}>
+                    <Form.Label>Ordenação (Qtd)</Form.Label>
+                    <Form.Select 
+                      value={ordem}
+                      onChange={(e) => setOrdem(e.target.value)}
+                    >
+                      <option value="">Padrão</option>
+                      <option value="asc">Crescente (Menor para Maior)</option>
+                      <option value="desc">Decrescente (Maior para Menor)</option>
+                    </Form.Select>
+                  </Col>
                 </Row>
               </Form>
             </Card.Body>

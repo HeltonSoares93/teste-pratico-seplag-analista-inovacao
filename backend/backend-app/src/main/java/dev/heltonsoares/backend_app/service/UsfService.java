@@ -117,4 +117,13 @@ public class UsfService {
 
     return new PaginaResponse<>(paginados, total, page, size, totalPaginas);
   }
+
+  public List<String> listarHorariosDisponiveis() {
+    return cache.stream()
+        .map(UsfResponse::horario)
+        .filter(horario -> horario != null && !horario.isBlank())
+        .distinct()
+        .sorted()
+        .collect(Collectors.toList());
+  }
 }

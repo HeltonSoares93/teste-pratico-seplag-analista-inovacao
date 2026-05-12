@@ -10,6 +10,7 @@ import UnidadesSaudeDaFamilia from "./componentes/UnidadesSaudeDaFamilia";
 import Painel from "./componentes/Painel";
 import ServicosApoioDiagnosticoTerapeutico from "./componentes/ServicosApoioDiagnosticoTerapeutico";
 import EducacaoInfantilEja from "./componentes/EducacaoInfantilEja";
+import Footer from "./componentes/Footer";
 
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
       <MenuNav />
 
       <Routes>
+        <Route path="/" element={<Sobre />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/medicamentos" element={<Medicamentos />} />
         <Route path="/unidadesdistribuicaopreservativos" element={<UnidadesDistribuicaoPreservativos />} />
@@ -30,6 +32,7 @@ export default function App() {
 
       </Routes>
 
+      <Footer />
     </Container>
 
 

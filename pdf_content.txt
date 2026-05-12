@@ -1,0 +1,33 @@
+ Teste Prático  - Vaga de Analista de Inovação 
+ 1.  Contexto 
+ A Prefeitura do Recife possui iniciativas de transparência e disponibilização de dados públicos por 
+ meio do Portal de Dados Abertos da Cidade do Recife, além disso, é possível encontrar dados de 
+ outras fontes oficiais sobre contextos do Recife. Esses dados podem ser utilizados para criação de 
+ aplicações,  dashboards  e soluções que auxiliem a sociedade  e a gestão pública na análise de 
+ informações e tomada de decisão. 
+ Neste desafio, a pessoa candidata deverá  construir  uma aplicação web  que consuma e apresente 
+ informações provenientes de dados públicos do Município do Recife. O objetivo é  simular um 
+ cenário real de uso de dados governamentais  . Os dados  utilizados na aplicação devem estar 
+ relacionados com alguma das seguintes áreas: 
+ ●  Educação; 
+ ●  Saúde; 
+ ●  Infraestrutura. 
+ A pessoa candidata deverá escolher uma das áreas listadas e poderá escolher livremente o tema da 
+ aplicação. 
+ 2.  Objetivo 
+ Desenvolver uma aplicação web para visualização e monitoramento de dados públicos, permitindo 
+ consultar  ,  organizar  e  apresentar  informações de forma  clara e acessível. A solução deve possuir: 
+ ●  Interface para visualização dos dados; 
+ ●  Camada responsável pelo consumo e tratamento dos dados; 
+ ●  Organização de código e separação de responsabilidades por camada. 
+ A aplicação pode listar informações obtidas a partir de fontes públicas, exibindo os dados de forma 
+ clara, organizada e filtrável. Caso a fonte pública escolhida não disponibilize facilmente os dados 
+ desejados, a pessoa candidata poderá utilizar base de dados fictícia para simular cenários da 
+ aplicação. Sugestões de fontes de dados públicas: 
+ ●  Portal de Dados Abertos do Recife; 
+ ●  Dados Abertos do Governo Federal; 
+ ●  IBGE. 
+ 3.  Prazo e Entrega 
+ O material deverá ser enviado até o dia  12/05  até às  12h (meio-dia)  para o e-mail 
+ seplan@recife.pe.gov.br  com o link do repositório  GitHub contendo o projeto desenvolvido no corpo 
+ do e-mail. 

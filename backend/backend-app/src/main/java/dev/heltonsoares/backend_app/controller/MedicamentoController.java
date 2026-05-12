@@ -27,11 +27,12 @@ public class MedicamentoController {
       @RequestParam(required = false) String codigo,
       @RequestParam(required = false) Integer qtdSuperior,
       @RequestParam(required = false) Integer qtdInferior,
+      @RequestParam(required = false) String ordem,
       @RequestParam(defaultValue = "0") int page,
       @RequestParam(defaultValue = "20") int size) {
 
     PaginaResponse<MedicamentoResponse> dados = medicamentoService.listarMedicamentos(
-        bairro, medicamento, codigo, qtdSuperior, qtdInferior, page, size);
+        bairro, medicamento, codigo, qtdSuperior, qtdInferior, ordem, page, size);
 
     return ResponseEntity.ok(dados);
   }

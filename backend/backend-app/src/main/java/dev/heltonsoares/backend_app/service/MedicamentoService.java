@@ -62,7 +62,7 @@ public class MedicamentoService {
   }
 
   public PaginaResponse<MedicamentoResponse> listarMedicamentos(String bairro, String medicamento, String codigo,
-      Integer qtdSuperior, Integer qtdInferior, int page, int size) {
+      Integer qtdSuperior, Integer qtdInferior, String ordem, int page, int size) {
 
     List<MedicamentoResponse> filtrados = cache.stream()
         .filter(ckan -> {
@@ -98,6 +98,12 @@ public class MedicamentoService {
           return ckan.quantidade() <= qtdInferior;
         })
         .collect(Collectors.toList());
+
+    if ("asc".equalsIgnoreCase(ordem)) {
+      filtrados.sort(java.util.Comparator.comparing(MedicamentoResponse::quantidade));
+    } else if ("desc".equalsIgnoreCase(ordem)) {
+      filtrados.sort(java.util.Comparator.comparing(MedicamentoResponse::quantidade).reversed());
+    }
 
     long total = filtrados.size();
     int totalPaginas = size > 0 ? (int) Math.ceil((double) total / size) : 1;

@@ -51,3 +51,14 @@ Caso seja necessário dar andamento nas rotinas de código:
 1. Todos os controllers do Spring Boot suportam nativamente `page`, `size` e uma gama de parâmetros de filtro opcionais que combinam com as colunas.
 2. Nenhuma alteração disruptiva foi feita no estilo geral CSS (padrão mantido). Use o `react-bootstrap` para estender novas interfaces.
 3. Este projeto está validado, altamente funcional e construído no mais estrito padrão de design corporativo. Leia este arquivo de handover primeiro antes de refatorar qualquer lógica descrita acima.
+
+---
+
+## 5. Últimas Refatorações Estruturais (Atualização de Arquitetura)
+
+Para garantir a melhor escalabilidade e aderência a sistemas operacionais mais restritos, as seguintes adaptações foram recém implementadas:
+
+1. **Correção do Limite MAX_PATH (Windows):** A estrutura profunda original de pastas do pacote Java excedia o limite de 260 caracteres nativo do Windows durante as descompactações (`git restore` e ferramentas zip). O backend foi encurtado. Seu nome passou a ser `backend-app` e a raiz do pacote Java foi achatada para garantir que futuros clones nunca sofram de arquivos ocultados pela limitação.
+2. **Navegação Frontend Root:** A URI raiz (`/`) do React Router foi mapeada diretamente para o componente inicial de boas vindas, extinguindo páginas em branco na carga inicial.
+3. **Ordenação Global In-Memory:** Adicionado processamento nativo via `Comparator` dentro dos Services do Spring Boot (ex: Medicamentos), ordenando a totalidade de todos os milhares de registros em memória *antes* da aplicação do recorte da paginação. Isso garante um sort perfeito (Global Sort) acionado por botões de `Form.Select` na interface de usuário.
+4. **Extração de Parâmetros Únicos (`.distinct()`):** Para formulários onde os usuários precisam selecionar "Horários" (USF e SADT), foram criadas rotas anexas no Backend (ex: `/usf/horarios`). O Spring Boot varre a memória e extrai todas as opções reais cadastradas, eliminando as centenas de registros duplicados e enviando para o React apenas uma lista limpa, poupando a UI de renderizações pesadas e de digitação manual de filtros (`Form.Control`). A API de filtros de SADT também foi expandida para incluir os novos parâmetros do frontend.

@@ -11,6 +11,8 @@ export default function ServicosApoioDiagnosticoTerapeutico() {
   const [bairro, setBairro] = useState("");
   const [especialidade, setEspecialidade] = useState("");
   const [endereco, setEndereco] = useState("");
+  const [horario, setHorario] = useState("");
+  const [horariosDisponiveis, setHorariosDisponiveis] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
@@ -38,7 +40,11 @@ export default function ServicosApoioDiagnosticoTerapeutico() {
 
   useEffect(() => {
     buscarDados(0);
-  }, [])
+    fetch("http://localhost:8080/sadt/horarios")
+      .then(res => res.json())
+      .then(json => setHorariosDisponiveis(json || []))
+      .catch(erro => console.error("Erro ao buscar horários: ", erro));
+  }, []);
 
   const buildUrl = (pageNumber) => {
     const params = new URLSearchParams();
@@ -46,6 +52,7 @@ export default function ServicosApoioDiagnosticoTerapeutico() {
     if (bairro.trim()) params.append("bairro", bairro.trim());
     if (especialidade.trim()) params.append("especialidade", especialidade.trim());
     if (endereco.trim()) params.append("endereco", endereco.trim());
+    if (horario.trim()) params.append("horario", horario.trim());
     params.append("page", pageNumber);
     params.append("size", 20);
     const query = params.toString();
@@ -57,6 +64,7 @@ export default function ServicosApoioDiagnosticoTerapeutico() {
     setNomeOficial("");
     setEndereco("");
     setEspecialidade("");
+    setHorario("");
   };
 
   const handleFiltrar = () => {
@@ -127,6 +135,18 @@ export default function ServicosApoioDiagnosticoTerapeutico() {
                       value={endereco}
                       onChange={(e) => setEndereco(e.target.value)}
                     />
+                  </Col>
+                  <Col xs={12} md={6} lg={3}>
+                    <Form.Label>Horário</Form.Label>
+                    <Form.Select 
+                      value={horario}
+                      onChange={(e) => setHorario(e.target.value)}
+                    >
+                      <option value="">Todos os horários</option>
+                      {horariosDisponiveis.map((h, i) => (
+                        <option key={i} value={h}>{h}</option>
+                      ))}
+                    </Form.Select>
                   </Col>
                 </Row>
               </Form>

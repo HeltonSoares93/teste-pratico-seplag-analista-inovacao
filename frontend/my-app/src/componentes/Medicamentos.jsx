@@ -12,11 +12,12 @@ export default function Medicamentos() {
   const [codigo, setCodigo] = useState("");
   const [qtdSuperior, setQtdSuperior] = useState("");
   const [qtdInferior, setQtdInferior] = useState("");
+  const [ordem, setOrdem] = useState("");
 
   const [loading, setLoading] = useState(false);
 
-  const buscarDados = (pageNumber = 0) => {
-    const url = buildUrl(pageNumber);
+  const buscarDados = (pageNumber = 0, ordemAtual = ordem) => {
+    const url = buildUrl(pageNumber, ordemAtual);
     setLoading(true);
     fetch(url)
       .then(resposta => {
@@ -41,13 +42,14 @@ export default function Medicamentos() {
   }, [])
 
 
-  const buildUrl = (pageNumber) => {
+  const buildUrl = (pageNumber, ordemAtual = ordem) => {
     const params = new URLSearchParams();
     if (bairro.trim()) params.append("bairro", bairro.trim());
     if (medicamento.trim()) params.append("medicamento", medicamento.trim());
     if (codigo.trim()) params.append("codigo", codigo.trim());
     if (qtdSuperior.trim()) params.append("qtdSuperior", qtdSuperior.trim());
     if (qtdInferior.trim()) params.append("qtdInferior", qtdInferior.trim());
+    if (ordemAtual) params.append("ordem", ordemAtual);
     params.append("page", pageNumber);
     params.append("size", 20);
     const query = params.toString();
@@ -60,6 +62,7 @@ export default function Medicamentos() {
     setCodigo("");
     setQtdSuperior("");
     setQtdInferior("");
+    setOrdem("");
   };
 
   const handleFiltrar = () => {
@@ -137,6 +140,17 @@ export default function Medicamentos() {
                       value={qtdInferior}
                       placeholder="Ex: 12"
                       onChange={(e) => setQtdInferior(e.target.value)} />
+                  </Col>
+                  <Col xs={12} md={6} lg={3}>
+                    <Form.Label>Ordenação (Quantidade)</Form.Label>
+                    <Form.Select 
+                      value={ordem}
+                      onChange={(e) => setOrdem(e.target.value)}
+                    >
+                      <option value="">Padrão</option>
+                      <option value="asc">Crescente (Menores)</option>
+                      <option value="desc">Decrescente (Maiores)</option>
+                    </Form.Select>
                   </Col>
                 </Row>
               </Form>
