@@ -61,6 +61,10 @@ public class UdpService {
     System.out.println("Cache de UDPs finalizado. Total de registros: " + cache.size());
   }
 
+  public int tamanhoCache() {
+    return cache.size();
+  }
+
   public PaginaResponse<UdpResponse> listarUDPs(String bairro, String endereco, String nomeOficial, int page, int size) {
     List<UdpResponse> filtrados = cache.stream()
         .filter(ckan -> {

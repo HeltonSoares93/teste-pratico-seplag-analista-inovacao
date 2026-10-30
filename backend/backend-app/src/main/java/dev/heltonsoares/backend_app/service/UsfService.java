@@ -68,6 +68,10 @@ public class UsfService {
     System.out.println("Cache de USFs finalizado. Total de registros: " + cache.size());
   }
 
+  public int tamanhoCache() {
+    return cache.size();
+  }
+
   public PaginaResponse<UsfResponse> listarUSFs(
       String nomeOficial,
       String endereco,

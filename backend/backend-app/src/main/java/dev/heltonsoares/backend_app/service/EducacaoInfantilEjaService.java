@@ -61,6 +61,10 @@ public class EducacaoInfantilEjaService {
     System.out.println("Cache de EducaÃ§Ã£o Infantil/EJA finalizado. Total de registros: " + cache.size());
   }
 
+  public int tamanhoCache() {
+    return cache.size();
+  }
+
   public PaginaResponse<EducacaoInfantilEjaResponse> listarDados(
       String unidadeEnsino,
       String bairroEscola,

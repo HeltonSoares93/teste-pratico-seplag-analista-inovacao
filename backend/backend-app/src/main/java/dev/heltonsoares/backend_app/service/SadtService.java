@@ -66,6 +66,10 @@ public class SadtService {
     System.out.println("Cache de SADTs finalizado. Total de registros: " + cache.size());
   }
 
+  public int tamanhoCache() {
+    return cache.size();
+  }
+
   public PaginaResponse<SadtResponse> listarSadts(String bairro, String endereco, String nomeOficial, String especialidade, String horario, int page, int size) {
     List<SadtResponse> filtrados = cache.stream()
         .filter(ckan -> {

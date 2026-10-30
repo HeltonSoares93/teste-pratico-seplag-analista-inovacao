@@ -61,6 +61,10 @@ public class MedicamentoService {
     System.out.println("Cache de Medicamentos finalizado. Total de registros: " + cache.size());
   }
 
+  public int tamanhoCache() {
+    return cache.size();
+  }
+
   public PaginaResponse<MedicamentoResponse> listarMedicamentos(String bairro, String medicamento, String codigo,
       Integer qtdSuperior, Integer qtdInferior, String ordem, int page, int size) {
 
