@@ -99,7 +99,7 @@ export default function Medicamentos() {
                 <Button variant="success" className="text-white" onClick={handleFiltrar} disabled={loading}>
                   {loading ? <Spinner size="sm" /> : "Filtrar"}
                 </Button>
-                <Button variant="info" className="text-white" onClick={handleLimpar} disabled={loading}>Limpar</Button>
+                <Button variant="info" className="text-white" onClick={handleLimpar} disabled={loading}>Limpar Filtros</Button>
               </div>
             </Card.Header>
 
